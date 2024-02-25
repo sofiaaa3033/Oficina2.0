@@ -47,6 +47,16 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8080:80 
+        environment:
+            PMA_HOST: '${DB_HOST}' 
+            PMA_USER: '${DB_USERNAME}' 
+            PMA_PASSWORD: '${DB_PASSWORD}'
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
